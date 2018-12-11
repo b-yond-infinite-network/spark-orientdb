@@ -4,16 +4,15 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.apache.spark</groupId>
-    <artifactId>spark-orientdb-${spark.version}_${scala.binary.version}</artifactId>
-    <version>1.4</version>
+    <parent>
+        <groupId>com.byond</groupId>
+        <artifactId>spark-parent</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
 
-    <properties>
-        <scala.version>2.11.8</scala.version>
-        <scala.binary.version>2.11</scala.binary.version>
-        <spark.version>2.2.1</spark.version>
-        <orientdb.graphdb.version>2.2.32</orientdb.graphdb.version>
-    </properties>
+    <groupId>com.byond.infinity</groupId>
+    <artifactId>spark-orientdb</artifactId>
+    <version>1.0</version>
 
     <repositories>
         <repository>
@@ -22,6 +21,10 @@
             <url>http://dl.bintray.com/spark-packages/maven</url>
         </repository>
     </repositories>
+
+    <properties>
+        <orientdb.graphdb.version>3.0.10</orientdb.graphdb.version>
+    </properties>
 
     <dependencies>
         <dependency>
@@ -36,8 +39,7 @@
         </dependency>
         <dependency>
             <groupId>org.scalatest</groupId>
-            <artifactId>scalatest_${scala.binary.version}</artifactId>
-            <version>3.0.0</version>
+            <artifactId>scalatest_${scala.base}</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -48,37 +50,28 @@
         </dependency>
         <dependency>
             <groupId>org.apache.spark</groupId>
-            <artifactId>spark-core_${scala.binary.version}</artifactId>
+            <artifactId>spark-core_${scala.base}</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-sql_${scala.base}</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-hive_${scala.base}</artifactId>
             <version>${spark.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.spark</groupId>
-            <artifactId>spark-sql_${scala.binary.version}</artifactId>
-            <version>${spark.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.spark</groupId>
-            <artifactId>spark-hive_${scala.binary.version}</artifactId>
-            <version>${spark.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.spark</groupId>
-            <artifactId>spark-graphx_${scala.binary.version}</artifactId>
+            <artifactId>spark-graphx_${scala.base}</artifactId>
             <version>${spark.version}</version>
         </dependency>
         <dependency>
             <groupId>graphframes</groupId>
             <artifactId>graphframes</artifactId>
-            <version>0.5.0-spark2.1-s_${scala.binary.version}</version>
+            <version>0.5.0-spark2.1-s_${scala.base}</version>
         </dependency>
     </dependencies>
-
-    <distributionManagement>
-        <repository>
-            <id>bintray-sbcd90-spark-orientdb</id>
-            <url>https://api.bintray.com/maven/sbcd90/org.apache.spark/spark-orientdb-${spark.version}_${scala.binary.version}/;publish=1</url>
-        </repository>
-    </distributionManagement>
 
     <build>
         <plugins>
@@ -143,7 +136,7 @@
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>2.3.2</version>
                 <configuration>
-                    <finalName>spark-orientdb-${spark.version}_${scala.binary.version}</finalName>
+                    <finalName>spark-orientdb-${spark.version}</finalName>
                 </configuration>
             </plugin>
         </plugins>
